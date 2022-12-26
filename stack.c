@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-t_stack	*ft_new_stack(void *content)
+t_stack	*ft_new_stack(int content)
 {
 	t_stack	*new;
 
@@ -47,18 +47,21 @@ int	ft_stack_size(t_stack *stack)
 	return (size);
 }
 
-void	ft_pop(t_stack **stack)
+int	ft_pop(t_stack **stack)
 {
 	t_stack	*tmp;
+	int	ret;
 
 	if(!*stack || !stack)
-		return ;
+		exit(EXIT_FAILURE);
 	tmp = *stack;
 	while(tmp->next != NULL)
 		tmp = tmp->next;
 	if(tmp->previous != NULL)
 		tmp->previous->next = tmp->next;
+	ret = tmp->content;
 	free(tmp);
+	return (ret);
 }
 
 void	ft_stack_clear(t_stack **stack)
@@ -74,7 +77,7 @@ void	ft_print_stack(t_stack *stack)
 {
 	while(stack != NULL)
 	{
-		printf("%d, ", (int)stack->content);
+		printf("%d, ", stack->content);
 		stack = stack->next;
 	}
 	printf("\n");
