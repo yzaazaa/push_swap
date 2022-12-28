@@ -29,4 +29,6 @@ void	rra(t_stack **a, t_stack **b);
 void	rrb(t_stack **a, t_stack **b);
 void	rrr(t_stack **a, t_stack **b);
 void	ft_print_stacks(t_stack *a, t_stack *b);
+void	ft_free_stack(t_stack *a);
+
 #endif

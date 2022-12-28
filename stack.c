@@ -87,6 +87,20 @@ void	ft_print_stack(t_stack *stack)
 	printf("\n\n");
 }
 
+void	ft_free_stack(t_stack *a)
+{
+	t_stack	*tmp;
+	t_stack	*tmp2;
+
+	tmp = a;
+	while(tmp != NULL)
+	{
+		tmp2 = tmp->next;
+		free(tmp);
+		tmp = tmp2;
+	}
+}
+
 int	main()
 {
 	t_stack	*a = ft_new_stack(8);
@@ -121,6 +135,7 @@ int	main()
 	pa(&a, &b);
 	pa(&a, &b);
 	ft_print_stacks(a, b);
-
+	ft_free_stack(a);
+	ft_free_stack(b);
 	return (0);
 }
