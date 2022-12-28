@@ -78,41 +78,49 @@ void	ft_print_stack(t_stack *stack)
 		printf("NULL\n");
 		return ;
 	}
-	while(stack->next != NULL)
-		stack = stack->next;
+	printf("\n");
 	while(stack != NULL)
 	{
-		printf("%d ", stack->content);
-		stack = stack->previous;
+		printf("%d\n", stack->content);
+		stack = stack->next;
 	}
-	printf("\n");
+	printf("\n\n");
 }
-/*
+
 int	main()
 {
-	t_stack	*b = ft_new_stack(1);
-	t_stack	*a = ft_new_stack(7);
+	t_stack	*a = ft_new_stack(8);
+	t_stack	*b = NULL;
 
-	ft_push(&b, ft_new_stack(2));
-	ft_push(&b, ft_new_stack(3));
-	ft_push(&b, ft_new_stack(4));
-	ft_push(&b, ft_new_stack(5));
-	ft_push(&b, ft_new_stack(6));
-	printf("b: ");
-	ft_print_stack(b);
-
-	ft_push(&a, ft_new_stack(8));
-	ft_push(&a, ft_new_stack(9));
-	ft_push(&a, ft_new_stack(10));
-	ft_push(&a, ft_new_stack(11));
-	ft_push(&a, ft_new_stack(12));
-	printf("a: ");
-	ft_print_stack(a);
+	ft_push(&a, ft_new_stack(5));
+	ft_push(&a, ft_new_stack(6));
+	ft_push(&a, ft_new_stack(3));
+	ft_push(&a, ft_new_stack(1));
+	ft_push(&a, ft_new_stack(2));
+	printf("init a & b: \n");
+	ft_print_stacks(a, b);
+	printf("exec sa: \n");
+	sa(&a);
+	ft_print_stacks(a, b);
+	printf("exec pb pb pb: \n");
+	pb(&a, &b);
+	pb(&a, &b);
+	pb(&a, &b);
+	ft_print_stacks(a, b);
+	printf("exec ra rb: \n");
+	rr(&a, &b);
+	ft_print_stacks(a, b);
+	printf("exec rra rrb: \n");
 	rrr(&a, &b);
-	printf("a: ");
-	ft_print_stack(a);
-	printf("b: ");
-	ft_print_stack(b);
+	ft_print_stacks(a, b);
+	printf("exec sa: \n");
+	sa(&a);
+	ft_print_stacks(a, b);
+	printf("exec pa pa pa: \n");
+	pa(&a, &b);
+	pa(&a, &b);
+	pa(&a, &b);
+	ft_print_stacks(a, b);
 
 	return (0);
-}*/
+}

@@ -1,51 +1,31 @@
 #include "push_swap.h"
 
-void sa(t_stack **a, t_stack **b)
+void sa(t_stack **a)
 {
 	int	size_a;
 	int	first;
 	int	second;
-	int	count;
 
-	count = 0;
 	size_a = ft_stack_size(*a);
 	if(size_a < 3)
 		return ;
-	while(size_a > 2)
-	{
-		ft_push(b, ft_new_stack(ft_pop(a)));
-		size_a--;
-		count++;
-	}
-	first = ft_pop(a);
 	second = ft_pop(a);
-	while(count--)
-		ft_push(a, ft_new_stack(ft_pop(b)));
+	first = ft_pop(a);
 	ft_push(a, ft_new_stack(second));
 	ft_push(a, ft_new_stack(first));
 }
 
-void sb(t_stack **a, t_stack **b)
+void sb(t_stack **b)
 {
-	int	count;
+	int	size_b;
 	int	first;
 	int	second;
-	int	size_b;
 
-	count = 0;
 	size_b = ft_stack_size(*b);
 	if(size_b < 3)
 		return ;
-	while(size_b > 2)
-	{
-		ft_push(a, ft_new_stack(ft_pop(b)));
-		size_b--;
-		count++;
-	}
-	first = ft_pop(b);
 	second = ft_pop(b);
-	while(count--)
-		ft_push(b, ft_new_stack(ft_pop(a)));
+	first = ft_pop(b);
 	ft_push(b, ft_new_stack(second));
 	ft_push(b, ft_new_stack(first));
 }
@@ -64,7 +44,7 @@ void	pb(t_stack **a, t_stack **b)
 	ft_push(b, ft_new_stack(ft_pop(a)));
 }
 
-void	ra(t_stack **a, t_stack **b)
+void	rra(t_stack **a, t_stack **b)
 {
 	int	first;
 	int	size_a;
@@ -86,7 +66,7 @@ void	ra(t_stack **a, t_stack **b)
 	ft_push(a, ft_new_stack(first));
 }
 
-void	rb(t_stack **a, t_stack **b)
+void	rrb(t_stack **a, t_stack **b)
 {
 	int	first;
 	int	count;
@@ -108,13 +88,13 @@ void	rb(t_stack **a, t_stack **b)
 	ft_push(b, ft_new_stack(first));
 }
 
-void	rr(t_stack **a, t_stack **b)
+void	rrr(t_stack **a, t_stack **b)
 {
-	ra(a, b);
-	rb(a, b);
+	rra(a, b);
+	rrb(a, b);
 }
 
-void	rra(t_stack **a, t_stack **b)
+void	ra(t_stack **a, t_stack **b)
 {
 	int	last;
 	int	count;
@@ -137,7 +117,7 @@ void	rra(t_stack **a, t_stack **b)
 		pa(a, b);
 }
 
-void	rrb(t_stack **a, t_stack **b)
+void	rb(t_stack **a, t_stack **b)
 {
 	int	last;
 	int	count;
@@ -160,8 +140,40 @@ void	rrb(t_stack **a, t_stack **b)
 		pb(a, b);
 }
 
-void	rrr(t_stack **a, t_stack **b)
+void	rr(t_stack **a, t_stack **b)
 {
-	rra(a, b);
-	rrb(a, b);
+	ra(a, b);
+	rb(a, b);
+}
+
+void	ft_print_stacks(t_stack *a, t_stack *b)
+{
+	int	size_a;
+	int	size_b;
+	int	max;
+
+	size_a = ft_stack_size(a);
+	size_b = ft_stack_size(b);
+	if(size_a >= size_b)
+		max = size_a;
+	else
+		max = size_b;
+	while(max--)
+	{
+		if(!a)
+			printf("\t");
+		else if(a != NULL)
+		{
+			printf("%d\t", a->content);
+			a = a->next;
+		}
+		if(!b)
+			printf("\n");
+		else if(b != NULL)
+		{
+			printf("%d\n", b->content);
+			b = b->next;
+		}
+	}
+	printf("-\t-\na\tb\n");
 }
