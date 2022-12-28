@@ -7,8 +7,8 @@ t_stack	*ft_new_stack(int content)
 	new = malloc(sizeof(t_stack));
 	if(!new)
 		return (NULL);
-	new->previous = NULL;;
 	new->next = NULL;
+	new->index = 0;
 	new->content = content;
 	return (new);
 }
@@ -21,13 +21,13 @@ void	ft_push(t_stack **stack, t_stack *new)
 		return ;
 	if(!*stack)
 	{
-		new->previous = NULL;
 		*stack = new;
+		new->index = 0;
 		return ;
 	}
 	tmp = *stack;
 	new->next = tmp;
-	tmp->previous = new;
+	new->index = (tmp->index) + 1;
 	*stack = new;
 }
 
@@ -53,8 +53,6 @@ int	ft_pop(t_stack **stack)
 
 	tmp = *stack;
 	*stack = (*stack)->next;
-	if(tmp->next != NULL)
-		tmp->next->previous = NULL;
 	tmp->next = NULL;
 	ret = tmp->content;
 	free(tmp);
@@ -90,28 +88,49 @@ void	ft_print_stack(t_stack *stack)
 void	ft_free_stack(t_stack *a)
 {
 	t_stack	*tmp;
-	t_stack	*tmp2;
 
-	tmp = a;
-	while(tmp != NULL)
+	while(a != NULL)
 	{
-		tmp2 = tmp->next;
+		tmp = a;
+		a = a->next;
 		free(tmp);
-		tmp = tmp2;
 	}
 }
 
-int	main()
+void	init_stack(t_stack **a, int ac, char **argv)
 {
-	t_stack	*a = ft_new_stack(8);
-	t_stack	*b = NULL;
+	int	i;
+	t_stack	*new;
+	int	size;
 
-	ft_push(&a, ft_new_stack(5));
-	ft_push(&a, ft_new_stack(6));
-	ft_push(&a, ft_new_stack(3));
-	ft_push(&a, ft_new_stack(1));
-	ft_push(&a, ft_new_stack(2));
+	i = -1;
+	if(ac == 2)
+		argv = ft_split(argv[1], ' ');
+	else
+		i = 0;
+	size = ft_tab_size(argv) - 1;
+	while(size > i)
+	{
+		new = ft_new_stack(ft_atoi(argv[size]));
+		ft_push(a, new);
+		size--;
+	}
+	if(ac == 2)
+		ft_free_split(argv, i + 1);
+}
+
+int	main(int ac, char **argv)
+{
+	t_stack	*a;
+	t_stack *b;
+
+	a = NULL;
+	b = NULL;
+	init_stack(&a, ac, argv);
 	printf("init a & b: \n");
+//	printf("%d", a->content);
+//	ft_print_stack(a);
+
 	ft_print_stacks(a, b);
 	printf("exec sa: \n");
 	sa(&a);
@@ -137,5 +156,7 @@ int	main()
 	ft_print_stacks(a, b);
 	ft_free_stack(a);
 	ft_free_stack(b);
+
 	return (0);
+
 }

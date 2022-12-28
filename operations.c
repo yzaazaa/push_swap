@@ -7,7 +7,7 @@ void sa(t_stack **a)
 	int	second;
 
 	size_a = ft_stack_size(*a);
-	if(size_a < 3)
+	if(size_a < 2)
 		return ;
 	second = ft_pop(a);
 	first = ft_pop(a);
@@ -22,7 +22,7 @@ void sb(t_stack **b)
 	int	second;
 
 	size_b = ft_stack_size(*b);
-	if(size_b < 3)
+	if(size_b < 2)
 		return ;
 	second = ft_pop(b);
 	first = ft_pop(b);
@@ -158,13 +158,14 @@ void	ft_print_stacks(t_stack *a, t_stack *b)
 		max = size_a;
 	else
 		max = size_b;
+	printf("\n");
 	while(max--)
 	{
 		if(!a)
-			printf("\t");
+			printf(" ");
 		else if(a != NULL)
 		{
-			printf("%d\t", a->content);
+			printf("%d ", a->content);
 			a = a->next;
 		}
 		if(!b)
@@ -175,5 +176,5 @@ void	ft_print_stacks(t_stack *a, t_stack *b)
 			b = b->next;
 		}
 	}
-	printf("-\t-\na\tb\n");
+	printf("- -\na b\n");
 }

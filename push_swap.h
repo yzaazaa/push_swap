@@ -8,8 +8,8 @@
 typedef struct		s_stack
 {
 	int		content;
+	int		index;
 	struct s_stack	*next;
-	struct s_stack	*previous;
 }			t_stack;
 
 t_stack	*ft_new_stack(int content);
@@ -30,5 +30,9 @@ void	rrb(t_stack **a, t_stack **b);
 void	rrr(t_stack **a, t_stack **b);
 void	ft_print_stacks(t_stack *a, t_stack *b);
 void	ft_free_stack(t_stack *a);
+int	ft_atoi(const char *nptr);
+char	**ft_split(char const *s, char c);
+char	**ft_free_split(char **arr, int size);
+int	ft_tab_size(char **tab);
 
 #endif
