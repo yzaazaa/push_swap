@@ -116,7 +116,7 @@ void	init_stack(t_stack **a, int ac, char **argv)
 		size--;
 	}
 	if(ac == 2)
-		ft_free_split(argv, i + 1);
+		ft_free_split(argv, ft_tab_size(argv));
 }
 
 int	main(int ac, char **argv)

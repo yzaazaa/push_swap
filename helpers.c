@@ -115,8 +115,11 @@ char	*ft_add_str(char *s, char c)
 
 char	**ft_free_split(char **arr, int	size)
 {
-	while(size > 0)
-		free(arr[size--]);
+	int	i;
+
+	i = 0;
+	while(i < size)
+		free(arr[i++]);
 	free(arr);
 	return (NULL);
 }
