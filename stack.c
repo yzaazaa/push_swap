@@ -8,9 +8,18 @@ t_stack	*ft_new_stack(int content)
 	if(!new)
 		return (NULL);
 	new->next = NULL;
-	new->index = 0;
+	new->index = -1;
 	new->content = content;
 	return (new);
+}
+
+t_stack	*ft_copy_stack(t_stack *stack)
+{
+	t_stack *ret;
+
+	ret = ft_new_stack(stack->content);
+	ret->index = stack->index;
+	return (ret);
 }
 
 void	ft_push(t_stack **stack, t_stack *new)
@@ -22,12 +31,12 @@ void	ft_push(t_stack **stack, t_stack *new)
 	if(!*stack)
 	{
 		*stack = new;
-		new->index = 0;
+		//new->index = 0;
 		return ;
 	}
 	tmp = *stack;
 	new->next = tmp;
-	new->index = (tmp->index) + 1;
+	//new->index = (tmp->index) + 1;
 	*stack = new;
 }
 
@@ -97,6 +106,44 @@ void	ft_free_stack(t_stack *a)
 	}
 }
 
+t_stack	*get_next_min(t_stack **stack)
+{
+	t_stack	*head;
+	t_stack	*min;
+	int		has_min;
+
+	min = NULL;
+	has_min = 0;
+	head = *stack;
+	if (head)
+	{
+		while (head)
+		{
+			if ((head->index == -1) && (!has_min || head->content < min->content))
+			{
+				min = head;
+				has_min = 1;
+			}
+			head = head->next;
+		}
+	}
+	return (min);
+}
+
+void	index_stack(t_stack **stack)
+{
+	t_stack	*head;
+	int		index;
+
+	index = 0;
+	head = get_next_min(stack);
+	while (head)
+	{
+		head->index = index++;
+		head = get_next_min(stack);
+	}
+}
+
 void	init_stack(t_stack **a, int ac, char **argv)
 {
 	int	i;
@@ -115,48 +162,7 @@ void	init_stack(t_stack **a, int ac, char **argv)
 		ft_push(a, new);
 		size--;
 	}
+	index_stack(a);
 	if(ac == 2)
 		ft_free(argv);
 }
-/* 
-int	main(int ac, char **argv)
-{
-	t_stack	*a;
-	t_stack *b;
-
-	a = NULL;
-	b = NULL;
-	init_stack(&a, ac, argv);
-	printf("init a & b: \n");
-//	printf("%d", a->content);
-//	ft_print_stack(a);
-
-	ft_print_stacks(a, b);
-	printf("exec sa: \n");
-	sa(&a);
-	ft_print_stacks(a, b);
-	printf("exec pb pb pb: \n");
-	pb(&a, &b);
-	pb(&a, &b);
-	pb(&a, &b);
-	ft_print_stacks(a, b);
-	printf("exec ra rb: \n");
-	rr(&a, &b);
-	ft_print_stacks(a, b);
-	printf("exec rra rrb: \n");
-	rrr(&a, &b);
-	ft_print_stacks(a, b);
-	printf("exec sa: \n");
-	sa(&a);
-	ft_print_stacks(a, b);
-	printf("exec pa pa pa: \n");
-	pa(&a, &b);
-	pa(&a, &b);
-	pa(&a, &b);
-	ft_print_stacks(a, b);
-	ft_free_stack(a);
-	ft_free_stack(b);
-
-	return (0);
-
-} */

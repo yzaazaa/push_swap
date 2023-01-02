@@ -27,6 +27,33 @@ int	ft_atoi(const char *nptr)
 	return (sign * ret);
 }
 
+long long	ft_atol(const char *nptr)
+{
+	long long	ret;
+	long long	sign;
+	char 	*ptr;
+
+	ret = 0;
+	sign = 1;
+	ptr = (char *)nptr;
+	if(!ptr)
+		return (0);
+	while(*ptr >= 0 && *ptr <= 32)
+		ptr++;
+	if(*ptr == '-' || *ptr == '+')
+	{
+		if(*ptr == '-')
+			sign = -1;
+		ptr++;
+	}
+	while(*ptr >= '0' && *ptr <= '9')
+	{
+		ret = ret * 10 + (*ptr - '0');
+		ptr++;
+	}
+	return (sign * ret);
+}
+
 size_t	ft_strlen(const char *s)
 {
 	size_t	i;
@@ -193,4 +220,11 @@ void	ft_free(char **str)
 		i++;
 	}
 	free(str);
+}
+
+int	ft_isdigit(int c)
+{
+	if(c >= '0' && c <= '9')
+		return (1);
+	return (0);
 }

@@ -32,23 +32,29 @@ void sb(t_stack **b)
 
 void	pa(t_stack **a, t_stack **b)
 {
+	t_stack *new;
 	if(!b || !*b)
 		return ;
-	ft_push(a, ft_new_stack(ft_pop(b)));
+	new = ft_copy_stack(*b);
+	ft_push(a, new);
+	ft_pop(b);
 }
 
 void	pb(t_stack **a, t_stack **b)
 {
+	t_stack *new;
 	if(!a || !*a)
 		return ;
-	ft_push(b, ft_new_stack(ft_pop(a)));
+	new = ft_copy_stack(*a);
+	ft_push(b, new);
+	ft_pop(a);
 }
 
 void	rra(t_stack **a, t_stack **b)
 {
-	int	first;
 	int	size_a;
 	int	count;
+	t_stack *first_node;
 
 	count = 0;
 	size_a = ft_stack_size(*a);
@@ -60,17 +66,18 @@ void	rra(t_stack **a, t_stack **b)
 		size_a--;
 		count++;
 	}
-	first = ft_pop(a);
+	first_node = ft_copy_stack(*a);
+	ft_pop(a);
 	while(count--)
 		pa(a, b);
-	ft_push(a, ft_new_stack(first));
+	ft_push(a, first_node);
 }
 
 void	rrb(t_stack **a, t_stack **b)
 {
-	int	first;
 	int	count;
 	int	size_b;
+	t_stack *first_node;
 
 	count = 0;
 	size_b = ft_stack_size(*b);
@@ -82,10 +89,11 @@ void	rrb(t_stack **a, t_stack **b)
 		size_b--;
 		count++;
 	}
-	first = ft_pop(b);
+	first_node = ft_copy_stack(*b);
+	ft_pop(b);
 	while(count--)
 		pb(a, b);
-	ft_push(b, ft_new_stack(first));
+	ft_push(b, first_node);
 }
 
 void	rrr(t_stack **a, t_stack **b)
@@ -96,15 +104,16 @@ void	rrr(t_stack **a, t_stack **b)
 
 void	ra(t_stack **a, t_stack **b)
 {
-	int	last;
 	int	count;
 	int	size_a;
+	t_stack *last_node;
 
 	count = 0;
 	size_a = ft_stack_size(*a);
 	if(size_a <= 1)
 		return ;
-	last = ft_pop(a);
+	last_node = ft_copy_stack(*a);
+	ft_pop(a);
 	size_a--;
 	while(size_a > 0)
 	{
@@ -112,22 +121,23 @@ void	ra(t_stack **a, t_stack **b)
 		size_a--;
 		count++;
 	}
-	ft_push(a, ft_new_stack(last));
+	ft_push(a, last_node);
 	while(count--)
 		pa(a, b);
 }
 
 void	rb(t_stack **a, t_stack **b)
 {
-	int	last;
 	int	count;
 	int	size_b;
+	t_stack *last_node;
 
 	count = 0;
 	size_b = ft_stack_size(*b);
 	if(size_b <= 1)
 		return ;
-	last = ft_pop(b);
+	last_node = ft_copy_stack(*b);
+	ft_pop(b);
 	size_b--;
 	while(size_b > 0)
 	{
@@ -135,7 +145,7 @@ void	rb(t_stack **a, t_stack **b)
 		size_b--;
 		count++;
 	}
-	ft_push(b, ft_new_stack(last));
+	ft_push(b, last_node);
 	while(count--)
 		pb(a, b);
 }
@@ -165,14 +175,14 @@ void	ft_print_stacks(t_stack *a, t_stack *b)
 			printf(" ");
 		else if(a != NULL)
 		{
-			printf("%d ", a->content);
+			printf("num: %d, index: %d ", a->content, a->index);
 			a = a->next;
 		}
 		if(!b)
 			printf("\n");
 		else if(b != NULL)
 		{
-			printf("%d\n", b->content);
+			printf("num: %d, index: %d\n", b->content, b->index);
 			b = b->next;
 		}
 	}
