@@ -1,4 +1,5 @@
 #include "push_swap.h"
+#include <stdio.h>
 
 void sa(t_stack **a)
 {
@@ -172,18 +173,18 @@ void	ft_print_stacks(t_stack *a, t_stack *b)
 		max = size_a;
 	else
 		max = size_b;
-	printf("\n");
+	write(1, "\n", 1);
 	while(max--)
 	{
 		if(!a)
-			printf(" ");
+			write(1, " ", 1);
 		else if(a != NULL)
 		{
 			printf("%d ", a->content);
 			a = a->next;
 		}
 		if(!b)
-			printf("\n");
+			write(1, "\n", 1);
 		else if(b != NULL)
 		{
 			printf("%d\n", b->content);

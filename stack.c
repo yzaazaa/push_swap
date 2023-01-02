@@ -31,12 +31,10 @@ void	ft_push(t_stack **stack, t_stack *new)
 	if(!*stack)
 	{
 		*stack = new;
-		//new->index = 0;
 		return ;
 	}
 	tmp = *stack;
 	new->next = tmp;
-	//new->index = (tmp->index) + 1;
 	*stack = new;
 }
 
@@ -76,22 +74,6 @@ void	ft_stack_clear(t_stack **stack)
 	while(size--)
 		ft_pop(stack);
 	*stack = NULL;
-}
-
-void	ft_print_stack(t_stack *stack)
-{
-	if(!stack)
-	{
-		printf("NULL\n");
-		return ;
-	}
-	printf("\n");
-	while(stack != NULL)
-	{
-		printf("%d\n", stack->content);
-		stack = stack->next;
-	}
-	printf("\n\n");
 }
 
 void	ft_free_stack(t_stack *a)
