@@ -3,7 +3,10 @@
 static void	sort_stack(t_stack **stack_a, t_stack **stack_b, int len)
 {
 	if (ft_stack_size(*stack_a) == 2)
-		sort_two(stack_a);
+	{
+		sa(stack_a);
+		write(1, "sa\n", 3);
+	}
 	else
 		sort(stack_a, stack_b, len);
 }

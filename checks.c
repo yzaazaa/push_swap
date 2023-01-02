@@ -46,10 +46,16 @@ void	check_args(int argc, char **argv)
 	{
 		tmp = ft_atoi(argv[i]);
 		if (!isnum(argv[i]) || is_repeat(tmp, argv, i) || !*argv[i])
+		{
+			write(2, "Error\n", 6);
 			exit(0);
+		}
 		tmp = ft_atol(argv[i]);
 		if (tmp < -2147483648 || tmp > 2147483647)
+		{
+			write(2, "Error\n", 6);
 			exit(0);
+		}
 		i++;
 	}
 	if (argc == 2)

@@ -14,10 +14,21 @@ int		stack_is_sorted(t_stack **stack)
 	return (1);
 }
 
-void	sort_two(t_stack **a)
+int	get_distance_node(t_stack **stack, int index)
 {
-	if(!stack_is_sorted(a))
-		sa(a);
+	t_stack	*head;
+	int		distance_node;
+
+	distance_node = 0;
+	head = *stack;
+	while (head)
+	{
+		if (head->index == index)
+			break ;
+		distance_node++;
+		head = head->next;
+	}
+	return (distance_node);
 }
 	
 void	positive_sort(t_stack **a, t_stack **b, t_save *save, int len)

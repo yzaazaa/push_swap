@@ -3,31 +3,35 @@
 void sa(t_stack **a)
 {
 	int	size_a;
-	int	first;
-	int	second;
+	t_stack	*first_node;
+	t_stack	*second_node;
 
 	size_a = ft_stack_size(*a);
 	if(size_a < 2)
 		return ;
-	second = ft_pop(a);
-	first = ft_pop(a);
-	ft_push(a, ft_new_stack(second));
-	ft_push(a, ft_new_stack(first));
+	second_node = ft_copy_stack(*a);
+	ft_pop(a);
+	first_node = ft_copy_stack(*a);
+	ft_pop(a);
+	ft_push(a, second_node);
+	ft_push(a, first_node);
 }
 
 void sb(t_stack **b)
 {
 	int	size_b;
-	int	first;
-	int	second;
+	t_stack	*first_node;
+	t_stack	*second_node;
 
 	size_b = ft_stack_size(*b);
 	if(size_b < 2)
 		return ;
-	second = ft_pop(b);
-	first = ft_pop(b);
-	ft_push(b, ft_new_stack(second));
-	ft_push(b, ft_new_stack(first));
+	second_node = ft_copy_stack(*b);
+	ft_pop(b);
+	first_node = ft_copy_stack(*b);
+	ft_pop(b);
+	ft_push(b, second_node);
+	ft_push(b, first_node);
 }
 
 void	pa(t_stack **a, t_stack **b)
@@ -175,14 +179,14 @@ void	ft_print_stacks(t_stack *a, t_stack *b)
 			printf(" ");
 		else if(a != NULL)
 		{
-			printf("num: %d, index: %d ", a->content, a->index);
+			printf("%d ", a->content);
 			a = a->next;
 		}
 		if(!b)
 			printf("\n");
 		else if(b != NULL)
 		{
-			printf("num: %d, index: %d\n", b->content, b->index);
+			printf("%d\n", b->content);
 			b = b->next;
 		}
 	}
