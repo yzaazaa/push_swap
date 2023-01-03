@@ -19,9 +19,9 @@ int	main(int argc, char **argv)
 		ft_free_stack(stack_b);
 		return (0);
 	}
-	/* ft_print_stacks(stack_a, stack_b); */
+/* 	ft_print_stacks(stack_a, stack_b); */
 	sort(&stack_a, &stack_b, len);
-	/* ft_print_stacks(stack_a, stack_b); */
+/* 	ft_print_stacks(stack_a, stack_b); */
 	ft_free_stack(stack_a);
 	ft_free_stack(stack_b);
 	return (0);

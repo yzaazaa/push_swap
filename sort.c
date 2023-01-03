@@ -59,7 +59,7 @@ void	sort_three(t_stack **a, t_stack **b)
 		sa(a);
 		write(1, "sa\n", 3);
 		ra(a, b);
-		write(1, "ra\n", 4);
+		write(1, "ra\n", 3);
 		return ;
 	}
 	if(first < second && first > third && second > third)
@@ -113,11 +113,11 @@ void	sort_four(t_stack **a, t_stack **b)
 	if(content_b > second_a && content_b < third_a)
 	{
 		ra(a, b);
-		write(1, "ra\n", 4);
+		write(1, "ra\n", 3);
 		ra(a, b);
-		write(1, "ra\n", 4);
+		write(1, "ra\n", 3);
 		pa(a, b);
-		write(1, "pa\n", 4);
+		write(1, "pa\n", 3);
 		rra(a, b);
 		write(1, "rra\n", 4);
 		rra(a, b);
@@ -166,7 +166,10 @@ void	sort_five(t_stack **a, t_stack **b)
 	pa(a, b);
 	write(1, "pa\n", 3);
 	while(count--)
+	{
 		rra(a, b);
+		write(1, "rra\n", 4);
+	}
 }
 
 void	positive_sort(t_stack **a, t_stack **b, t_save *save, int len)
