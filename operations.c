@@ -173,18 +173,18 @@ void	ft_print_stacks(t_stack *a, t_stack *b)
 		max = size_a;
 	else
 		max = size_b;
-	write(1, "\n", 1);
+	printf("\n");
 	while(max--)
 	{
 		if(!a)
-			write(1, " ", 1);
+			printf(" ");
 		else if(a != NULL)
 		{
 			printf("%d ", a->content);
 			a = a->next;
 		}
 		if(!b)
-			write(1, "\n", 1);
+			printf("\n");
 		else if(b != NULL)
 		{
 			printf("%d\n", b->content);
