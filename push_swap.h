@@ -46,5 +46,4 @@ int	ft_isdigit(int c);
 int	stack_is_sorted(t_stack **stack);
 void	sort(t_stack **a, t_stack **b, int len);
 void	check_args(int argc, char **argv);
-void	simple_sort(t_stack **stack_a, t_stack **stack_b);
 #endif

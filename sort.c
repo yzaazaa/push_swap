@@ -1,4 +1,5 @@
 #include "push_swap.h"
+#include <stdio.h>
 
 int		stack_is_sorted(t_stack **stack)
 {
@@ -172,46 +173,51 @@ void	sort_five(t_stack **a, t_stack **b)
 	}
 }
 
-void	positive_sort(t_stack **a, t_stack **b, t_save *save, int len)
+void	radix_sort(t_stack **a, t_stack **b)
 {
+	int	size_a;
+	int	max_bits;
+	int	i;
 	int	j;
 
-	j = 0;
-	while(j < len)
+	if(stack_is_sorted(a))
+		return ;
+	size_a = ft_stack_size(*a);
+	max_bits = 0;
+	while(((size_a - 1) >> max_bits) != 0)
+		max_bits++;
+	i = 0;
+	while(i < max_bits)
 	{
-		if(((*a)->index >> save->i) & 1)
+		j = 0;
+		while(j < size_a)
 		{
-			pb(a, b);
-			write(1, "pb\n", 3);
-			rb(a, b);
-			write(1, "rb\n", 3);
-			save->k++;
+			if(*a)
+			{
+				if((((*a)->index >> i) & 1) == 1)
+				{
+					ra(a, b);
+					write(1, "ra\n", 3);
+				}
+				else
+				{
+					pb(a, b);
+					write(1, "pb\n", 3);
+				}
+			}
+			j++;
 		}
-		else
-		{
-			ra(a, b);
-			write(1, "ra\n", 3);
-		}
-		j++;
-	}
-	j = 0;
-	if(b != NULL)
-	{
-		while(j < save->k)
+		while(ft_stack_size(*b))
 		{
 			pa(a, b);
 			write(1, "pa\n", 3);
-			ra(a, b);
-			write(1, "ra\n", 3);
-			j++;
 		}
+		i++;
 	}
 }
 
 void	sort(t_stack **a, t_stack **b, int len)
 {
-	t_save save;
-
 	if(len == 2)
 		sort_two(a);
 	else if(len == 3)
@@ -222,12 +228,6 @@ void	sort(t_stack **a, t_stack **b, int len)
 		sort_five(a, b);
 	else
 	{
-		save.i = 0;
-		while(save.i < 31)
-		{
-			save.k = 0;
-			positive_sort(a, b, &save, len);
-			save.i++;
-		}
+		radix_sort(a, b);
 	}
 }

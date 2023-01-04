@@ -177,17 +177,17 @@ void	ft_print_stacks(t_stack *a, t_stack *b)
 	while(max--)
 	{
 		if(!a)
-			printf(" ");
+			printf("  ");
 		else if(a != NULL)
 		{
-			printf("%d ", a->content);
+			printf("%d ", a->index);
 			a = a->next;
 		}
 		if(!b)
 			printf("\n");
 		else if(b != NULL)
 		{
-			printf("%d\n", b->content);
+			printf("%d\n", b->index);
 			b = b->next;
 		}
 	}
