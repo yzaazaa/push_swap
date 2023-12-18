@@ -6,7 +6,7 @@
 /*   By: yzaazaa <yzaazaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 02:32:29 by yzaazaa           #+#    #+#             */
-/*   Updated: 2023/12/16 23:44:47 by yzaazaa          ###   ########.fr       */
+/*   Updated: 2023/12/17 06:51:00 by yzaazaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,30 @@ void	print_stack(t_stack *a, t_stack *b)
 	t_node	*tmp_a;
 	t_node	*tmp_b;
 
+	if (a && !b)
+	{
+		tmp_a = a->top;
+		while (tmp_a)
+		{
+			ft_putnbr_fd(tmp_a->data, 1);
+			ft_putchar_fd('\n', 1);
+			tmp_a = tmp_a->next;
+		}
+		ft_putstr_fd("_\na", 1);
+		return ;
+	}
+	if (!a && b)
+	{
+		tmp_a = a->top;
+		while (tmp_a)
+		{
+			ft_putnbr_fd(tmp_a->data, 1);
+			ft_putchar_fd('\n', 1);
+			tmp_a = tmp_a->next;
+		}
+		ft_putstr_fd("_\na", 1);
+		return ;
+	}
 	tmp_a = a->top;
 	tmp_b = b->top;
 	if (a->size || b->size)
@@ -94,4 +118,20 @@ int	get_min(t_stack *stack)
 		tmp = tmp->next;
 	}
 	return (min);
+}
+
+int	get_max(t_stack *stack)
+{
+	t_node	*tmp;
+	int		max;
+
+	tmp = stack->top;
+	max = tmp->data;
+	while (tmp)
+	{
+		if (tmp->data > max)
+			max = tmp->data;
+		tmp = tmp->next;
+	}
+	return (max);
 }

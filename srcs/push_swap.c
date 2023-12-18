@@ -6,7 +6,7 @@
 /*   By: yzaazaa <yzaazaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 22:08:15 by yzaazaa           #+#    #+#             */
-/*   Updated: 2023/12/16 23:44:37 by yzaazaa          ###   ########.fr       */
+/*   Updated: 2023/12/17 05:51:16 by yzaazaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	main(int ac, char **av)
 	t_stack	*a;
 	t_stack	*b;
 
+	if (ac < 2)
+		exit(1);
 	init_stacks(&a, &b);
 	parse_args(&a, ac, av);
 	sort_stack(&a, &b);

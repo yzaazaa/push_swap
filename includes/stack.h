@@ -6,7 +6,7 @@
 /*   By: yzaazaa <yzaazaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 00:12:51 by yzaazaa           #+#    #+#             */
-/*   Updated: 2023/12/16 23:43:48 by yzaazaa          ###   ########.fr       */
+/*   Updated: 2023/12/17 22:56:50 by yzaazaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,11 @@ int		in_stack(t_stack *stack, int data);
 int		is_sorted(t_stack *stack);
 void	print_stack(t_stack *a, t_stack *b);
 void	init_stacks(t_stack **a, t_stack **b);
+int		get_index(t_stack *stack, int data);
 int		get_min(t_stack *stack);
+int		get_max(t_stack *stack);
+int		index_insert_b(t_stack *stack, int data);
+int		index_insert_a(t_stack *stack, int data);
 void	pa(t_stack **a, t_stack **b, int print);
 void	pb(t_stack **a, t_stack **b, int print);
 void	sa(t_stack **a, int print);
