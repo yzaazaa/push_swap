@@ -6,7 +6,7 @@
 /*   By: yzaazaa <yzaazaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 00:12:51 by yzaazaa           #+#    #+#             */
-/*   Updated: 2023/12/17 22:56:50 by yzaazaa          ###   ########.fr       */
+/*   Updated: 2023/12/21 11:50:00 by yzaazaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,16 @@
 # include "../libft/libft.h"
 # include <limits.h>
 
+typedef struct	s_instructions
+{
+	int	move;
+	int	min_instructions;
+}					t_instructions;
+
 typedef struct s_node
 {
 	int				data;
+	t_instructions	instructions;
 	struct s_node	*next;
 	struct s_node	*prev;
 }					t_node;
