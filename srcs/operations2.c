@@ -6,7 +6,7 @@
 /*   By: yzaazaa <yzaazaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 02:34:44 by yzaazaa           #+#    #+#             */
-/*   Updated: 2023/12/16 23:44:31 by yzaazaa          ###   ########.fr       */
+/*   Updated: 2023/12/22 01:36:58 by yzaazaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ra(t_stack **a, int print)
 {
 	t_node	*new_bottom;
 
-	if ((*a)->size > 2)
+	if ((*a)->size > 1)
 	{
 		new_bottom = (*a)->top;
 		(*a)->top = (*a)->top->next;
@@ -34,7 +34,7 @@ void	rb(t_stack **b, int print)
 {
 	t_node	*new_bottom;
 
-	if ((*b)->size > 2)
+	if ((*b)->size > 1)
 	{
 		new_bottom = (*b)->top;
 		(*b)->top = (*b)->top->next;
@@ -60,7 +60,7 @@ void	rra(t_stack **a, int print)
 {
 	t_node	*new_top;
 
-	if ((*a)->size > 2)
+	if ((*a)->size > 1)
 	{
 		new_top = (*a)->bottom;
 		(*a)->bottom = new_top->prev;
@@ -78,7 +78,7 @@ void	rrb(t_stack **b, int print)
 {
 	t_node	*new_top;
 
-	if ((*b)->size > 2)
+	if ((*b)->size > 1)
 	{
 		new_top = (*b)->bottom;
 		(*b)->bottom = new_top->prev;

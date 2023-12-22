@@ -6,7 +6,7 @@
 /*   By: yzaazaa <yzaazaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 06:47:12 by yzaazaa           #+#    #+#             */
-/*   Updated: 2023/12/21 11:51:59 by yzaazaa          ###   ########.fr       */
+/*   Updated: 2023/12/22 02:38:58 by yzaazaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,15 @@ int	index_insert_a(t_stack *stack, int data)
 	int		i;
 	t_node	*tmp;
 
-	if (data < stack->bottom->data && data > stack->top->data)
+	if (data < stack->top->data && data > stack->bottom->data)
 		return (0);
-	if (data < get_min(stack))
-		return (get_index(stack, get_min(stack)) + 1);
-	if (data > get_max(stack))
-		return (get_index(stack, get_max(stack)));
+	if (data < get_min(stack) || data > get_max(stack))
+		return (get_index(stack, get_min(stack)));
 	i = 0;
 	tmp = stack->top;
 	while (tmp->next)
 	{
-		if (tmp->data > data && tmp->next->data < data)
+		if (tmp->data < data && tmp->next->data > data)
 			return (i + 1);
 		tmp = tmp->next;
 		i++;

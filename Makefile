@@ -1,5 +1,5 @@
 #SRCS
-SRCS = srcs/push_swap.c srcs/sort_small_stack.c srcs/sort_stack.c srcs/operations.c srcs/operations2.c srcs/parse.c srcs/stack.c srcs/stack2.c srcs/stack3.c srcs/min_operations.c srcs/apply_min_operation.c srcs/operations_count.c
+SRCS = srcs/push_swap.c srcs/sort_small_stack.c srcs/sort_stack.c srcs/operations.c srcs/operations2.c srcs/parse.c srcs/stack.c srcs/stack2.c srcs/stack3.c
 
 SRCS_BONUS = srcs/checker_bonus.c srcs/operations.c srcs/operations2.c srcs/parse.c srcs/stack.c srcs/stack2.c
 
