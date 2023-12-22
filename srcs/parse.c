@@ -6,7 +6,7 @@
 /*   By: yzaazaa <yzaazaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 23:00:04 by yzaazaa           #+#    #+#             */
-/*   Updated: 2023/12/17 05:37:55 by yzaazaa          ###   ########.fr       */
+/*   Updated: 2023/12/22 10:22:40 by yzaazaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,9 @@ static int	in_splitted(char **splitted, char *str, int index)
 			return (1);
 		i++;
 	}
-	return (0); 
+	return (0);
 }
 
-#include <stdio.h>
 static char	**check(char *arg, t_stack *a)
 {
 	char	**splitted;
@@ -69,7 +68,8 @@ static char	**check(char *arg, t_stack *a)
 	{
 		if (!is_integer(splitted[i]))
 			ft_puterr("Error");
-		if (in_splitted(splitted, splitted[i], i) || in_stack(a, ft_atoi(splitted[i])))
+		if (in_splitted(splitted, splitted[i], i)
+			|| in_stack(a, ft_atoi(splitted[i])))
 			ft_puterr("Error");
 		i++;
 	}

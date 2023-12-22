@@ -6,7 +6,7 @@
 /*   By: yzaazaa <yzaazaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 22:08:15 by yzaazaa           #+#    #+#             */
-/*   Updated: 2023/12/22 02:46:41 by yzaazaa          ###   ########.fr       */
+/*   Updated: 2023/12/22 10:28:23 by yzaazaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	sort_stack(t_stack **a, t_stack **b)
 	else if ((*a)->size == 5)
 		sort_five(a, b);
 	else
-		sort_all(a, b, 1);
+		sort_all(a, b);
 }
 
 int	main(int ac, char **av)

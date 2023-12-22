@@ -6,7 +6,7 @@
 /*   By: yzaazaa <yzaazaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 02:32:29 by yzaazaa           #+#    #+#             */
-/*   Updated: 2023/12/17 06:51:00 by yzaazaa          ###   ########.fr       */
+/*   Updated: 2023/12/22 10:03:57 by yzaazaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,60 +26,6 @@ int	in_stack(t_stack *stack, int data)
 		tmp = tmp->next;
 	}
 	return (0);
-}
-
-void	print_stack(t_stack *a, t_stack *b)
-{
-	t_node	*tmp_a;
-	t_node	*tmp_b;
-
-	if (a && !b)
-	{
-		tmp_a = a->top;
-		while (tmp_a)
-		{
-			ft_putnbr_fd(tmp_a->data, 1);
-			ft_putchar_fd('\n', 1);
-			tmp_a = tmp_a->next;
-		}
-		ft_putstr_fd("_\na", 1);
-		return ;
-	}
-	if (!a && b)
-	{
-		tmp_a = a->top;
-		while (tmp_a)
-		{
-			ft_putnbr_fd(tmp_a->data, 1);
-			ft_putchar_fd('\n', 1);
-			tmp_a = tmp_a->next;
-		}
-		ft_putstr_fd("_\na", 1);
-		return ;
-	}
-	tmp_a = a->top;
-	tmp_b = b->top;
-	if (a->size || b->size)
-	{
-		while (tmp_a || tmp_b)
-		{
-			if (tmp_a)
-				ft_putnbr_fd(tmp_a->data, 1);
-			else
-				ft_putchar_fd(' ', 1);
-			ft_putchar_fd(' ', 1);
-			if (tmp_b)
-				ft_putnbr_fd(tmp_b->data, 1);
-			else
-				ft_putchar_fd(' ', 1);
-			ft_putchar_fd('\n', 1);
-			if (tmp_a)
-				tmp_a = tmp_a->next;
-			if (tmp_b)
-				tmp_b = tmp_b->next;
-		}
-	}
-	ft_putendl_fd("_ _\na b", 1);
 }
 
 int	is_sorted(t_stack *stack)
