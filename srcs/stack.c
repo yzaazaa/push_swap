@@ -6,7 +6,7 @@
 /*   By: yzaazaa <yzaazaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 00:15:23 by yzaazaa           #+#    #+#             */
-/*   Updated: 2023/12/22 09:18:02 by yzaazaa          ###   ########.fr       */
+/*   Updated: 2023/12/22 10:40:09 by yzaazaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	free_stack(t_stack **stack)
 {
 	if (!stack || !(*stack))
 		return ;
-	while ((*stack)->top)
+	while ((*stack)->size)
 		pop(stack);
 	free(*stack);
 	*stack = NULL;

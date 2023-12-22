@@ -6,7 +6,7 @@
 /*   By: yzaazaa <yzaazaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 22:26:15 by yzaazaa           #+#    #+#             */
-/*   Updated: 2023/12/15 23:00:00 by yzaazaa          ###   ########.fr       */
+/*   Updated: 2023/12/22 10:41:50 by yzaazaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int		ft_strcmp(char *s1, char *s2);
 void	*ft_free(char **ret);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 int		ft_toupper(int c);
-void	ft_puterr(char *str);
 int		check_sign(const char *str, int *i);
 int		ft_tolower(int c);
 char	*ft_strchr(const char *s, int c);

@@ -6,13 +6,13 @@
 /*   By: yzaazaa <yzaazaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 23:00:04 by yzaazaa           #+#    #+#             */
-/*   Updated: 2023/12/22 10:22:40 by yzaazaa          ###   ########.fr       */
+/*   Updated: 2023/12/22 10:50:38 by yzaazaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parse.h"
 
-static int	is_integer(char *str)
+static int	is_integer(char *str, t_stack *a, t_stack *b, char **splitted)
 {
 	int		i;
 	int		sign;
@@ -23,7 +23,7 @@ static int	is_integer(char *str)
 	res = 0;
 	sign = check_sign(str, &i);
 	if (str[i] == '\0')
-		ft_puterr("Error");
+		ft_puterr("Error", &a, &b, splitted);
 	if (!ft_strncmp("-2147483648", str, ft_strlen(str)))
 		return (1);
 	while (str[i] >= '0' && str[i] <= '9')
@@ -51,32 +51,32 @@ static int	in_splitted(char **splitted, char *str, int index)
 	return (0);
 }
 
-static char	**check(char *arg, t_stack *a)
+static char	**check(char *arg, t_stack *a, t_stack *b)
 {
 	char	**splitted;
 	int		i;
 
 	if (!arg[0])
-		ft_puterr("Error");
+		ft_puterr("Error", &a, &b, NULL);
 	splitted = ft_split(arg, ' ');
 	if (!splitted)
-		ft_puterr("Error");
+		ft_puterr("Error", &a, &b, splitted);
 	i = 0;
 	if (!splitted[i])
-		ft_puterr("Error");
+		ft_puterr("Error", &a, &b, splitted);
 	while (splitted[i])
 	{
-		if (!is_integer(splitted[i]))
-			ft_puterr("Error");
+		if (!is_integer(splitted[i], a, b, splitted))
+			ft_puterr("Error", &a, &b, splitted);
 		if (in_splitted(splitted, splitted[i], i)
 			|| in_stack(a, ft_atoi(splitted[i])))
-			ft_puterr("Error");
+			ft_puterr("Error", &a, &b, splitted);
 		i++;
 	}
 	return (splitted);
 }
 
-void	parse_args(t_stack **a, int ac, char **av)
+void	parse_args(t_stack **a, t_stack **b, int ac, char **av)
 {
 	char	**splitted;
 	int		i;
@@ -87,7 +87,7 @@ void	parse_args(t_stack **a, int ac, char **av)
 	splitted = NULL;
 	while (ac)
 	{
-		splitted = check(av[ac], *a);
+		splitted = check(av[ac], *a, *b);
 		i = 0;
 		while (splitted[i])
 			i++;
@@ -124,5 +124,5 @@ void	check_line(t_stack **a, t_stack **b, char *line)
 	else if (!ft_strcmp(line, "rrr\n"))
 		rrr(a, b, 0);
 	else
-		ft_puterr("Error");
+		ft_puterr("Error", a, b, NULL);
 }
