@@ -6,7 +6,7 @@
 /*   By: yzaazaa <yzaazaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 23:00:04 by yzaazaa           #+#    #+#             */
-/*   Updated: 2023/12/22 10:50:38 by yzaazaa          ###   ########.fr       */
+/*   Updated: 2023/12/24 10:37:37 by yzaazaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	is_integer(char *str, t_stack *a, t_stack *b, char **splitted)
 	sign = check_sign(str, &i);
 	if (str[i] == '\0')
 		ft_puterr("Error", &a, &b, splitted);
-	if (!ft_strncmp("-2147483648", str, ft_strlen(str)))
+	if (!ft_strcmp("-2147483648", str))
 		return (1);
 	while (str[i] >= '0' && str[i] <= '9')
 	{
@@ -81,8 +81,6 @@ void	parse_args(t_stack **a, t_stack **b, int ac, char **av)
 	char	**splitted;
 	int		i;
 
-	if (ac == 1)
-		exit(0);
 	ac--;
 	splitted = NULL;
 	while (ac)
@@ -93,7 +91,11 @@ void	parse_args(t_stack **a, t_stack **b, int ac, char **av)
 			i++;
 		i--;
 		while (i >= 0)
+		{
 			push(a, ft_atoi(splitted[i--]));
+			if (!(*a))
+				ft_puterr("Error", a, b, splitted);
+		}
 		ac--;
 		ft_free(splitted);
 	}

@@ -6,7 +6,7 @@
 /*   By: yzaazaa <yzaazaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 00:12:51 by yzaazaa           #+#    #+#             */
-/*   Updated: 2023/12/22 10:23:17 by yzaazaa          ###   ########.fr       */
+/*   Updated: 2023/12/24 10:37:59 by yzaazaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,12 @@ typedef struct s_stack
 	int		size;
 }					t_stack;
 
-t_node	*create_node(int data);
+void	ft_puterr(char *s, t_stack **a, t_stack **b, char **splitted);
 void	push(t_stack **stack, int data);
 int		pop(t_stack **stack);
 void	free_stack(t_stack **stack);
-int		stack_size(t_stack *stack);
 int		in_stack(t_stack *stack, int data);
 int		is_sorted(t_stack *stack);
-void	print_stack(t_stack *a, t_stack *b);
 void	init_stacks(t_stack **a, t_stack **b);
 int		get_index(t_stack *stack, int data);
 int		get_min(t_stack *stack);

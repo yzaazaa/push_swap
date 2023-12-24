@@ -6,13 +6,13 @@
 /*   By: yzaazaa <yzaazaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 00:15:23 by yzaazaa           #+#    #+#             */
-/*   Updated: 2023/12/22 10:40:09 by yzaazaa          ###   ########.fr       */
+/*   Updated: 2023/12/24 10:35:29 by yzaazaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/stack.h"
 
-t_node	*create_node(int data)
+static t_node	*create_node(int data)
 {
 	t_node	*node;
 
@@ -76,10 +76,14 @@ void	free_stack(t_stack **stack)
 void	init_stacks(t_stack **a, t_stack **b)
 {
 	*a = malloc(sizeof(t_stack));
+	if (!(*a))
+		ft_puterr("Error", a, NULL, NULL);
 	(*a)->top = NULL;
 	(*a)->bottom = NULL;
 	(*a)->size = 0;
 	*b = malloc(sizeof(t_stack));
+	if (!(*b))
+		ft_puterr("Error", a, b, NULL);
 	(*b)->top = NULL;
 	(*b)->bottom = NULL;
 	(*b)->size = 0;

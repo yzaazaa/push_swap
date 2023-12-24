@@ -6,7 +6,7 @@
 /*   By: yzaazaa <yzaazaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 23:37:45 by yzaazaa           #+#    #+#             */
-/*   Updated: 2023/12/22 11:53:06 by yzaazaa          ###   ########.fr       */
+/*   Updated: 2023/12/24 10:42:01 by yzaazaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,36 +34,46 @@ static t_instructions	fill_instructions(t_stack *a, t_stack *b, int data)
 	return (instructions);
 }
 
-static t_node	*go_to_min_instructions_node(t_stack *b)
+static void	push_nearest_to_b(t_stack **a, t_stack **b, int median)
 {
-	int		min_instructions;
-	t_node	*ret;
+	int		from_top;
+	int		from_bottom;
 	t_node	*tmp;
 
-	tmp = b->top;
-	min_instructions = tmp->instructions.min_instructions;
-	ret = tmp;
-	while (tmp)
+	tmp = (*a)->top;
+	from_top = 0;
+	while (tmp && tmp->data > median)
 	{
-		if (tmp->instructions.min_instructions < min_instructions)
-		{
-			min_instructions = tmp->instructions.min_instructions;
-			ret = tmp;
-		}
+		from_top++;
 		tmp = tmp->next;
 	}
-	return (ret);
+	from_bottom = 0;
+	tmp = (*a)->bottom;
+	while (tmp && tmp->data > median)
+	{
+		from_bottom++;
+		tmp = tmp->prev;
+	}
+	if (from_bottom <= from_top)
+		while ((*a)->top->data > median)
+			rra(a, 1);
+	else
+		while ((*a)->top->data > median)
+			ra(a, 1);
+	pb(a, b, 1);
 }
 
-static int	get_median(t_stack *a)
+static int	get_median(t_stack **a, t_stack **b)
 {
 	t_node	*tmp;
 	int		*list_sorted;
 	int		size;
 	int		ret;
 
-	tmp = a->top;
-	list_sorted = malloc(sizeof(int) * a->size);
+	tmp = (*a)->top;
+	list_sorted = malloc(sizeof(int) * (*a)->size);
+	if (!list_sorted)
+		ft_puterr("Error", a, b, NULL);
 	size = 0;
 	while (tmp)
 	{
@@ -76,42 +86,28 @@ static int	get_median(t_stack *a)
 	return (ret);
 }
 
-void	push_nearest_to_b(t_stack **a, t_stack **b, int chunk_mid)
+static void	chunks(t_stack **a, t_stack **b)
 {
-	int		from_top;
-	int		from_bottom;
-	t_node	*tmp;
+	int	size_a;
+	int	median;
 
-	tmp = (*a)->top;
-	from_top = 0;
-	while (tmp && tmp->data > chunk_mid)
-	{
-		from_top++;
-		tmp = tmp->next;
-	}
-	from_bottom = 0;
-	tmp = (*a)->bottom;
-	while (tmp && tmp->data > chunk_mid)
-	{
-		from_bottom++;
-		tmp = tmp->prev;
-	}
-	if (from_bottom <= from_top)
-		while ((*a)->top->data > chunk_mid)
-			rra(a, 1);
-	else
-		while ((*a)->top->data > chunk_mid)
-			ra(a, 1);
-	pb(a, b, 1);
+	size_a = (*a)->size;
+	median = get_median(a, b);
+	while ((*b)->size <= size_a / 2)
+		push_nearest_to_b(a, b, median);
+	while ((*a)->size > 3)
+		pb(a, b, 1);
+	sort_three(a);
 }
 
 void	sort_all(t_stack **a, t_stack **b)
 {
 	t_node	*tmp;
-	int		median;
 
-	median = get_median(*a);
-	push_to_b(a, b, median);
+	if ((*a)->size < 250)
+		push_to_b(a, b);
+	else
+		chunks(a, b);
 	while ((*b)->size)
 	{
 		tmp = (*b)->top;

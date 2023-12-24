@@ -6,7 +6,7 @@
 /*   By: yzaazaa <yzaazaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 22:48:46 by yzaazaa           #+#    #+#             */
-/*   Updated: 2023/12/22 10:58:57 by yzaazaa          ###   ########.fr       */
+/*   Updated: 2023/12/24 10:23:18 by yzaazaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	main(int ac, char **av)
 	t_stack	*b;
 	char	*line;
 
+	if (ac < 2)
+		exit(1);
 	init_stacks(&a, &b);
 	parse_args(&a, &b, ac, av);
 	line = get_next_line(0);

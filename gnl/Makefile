@@ -6,7 +6,7 @@
 #    By: yzaazaa <yzaazaa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/15 02:42:24 by yzaazaa           #+#    #+#              #
-#    Updated: 2023/12/16 02:00:14 by yzaazaa          ###   ########.fr        #
+#    Updated: 2023/12/24 10:17:46 by yzaazaa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,4 +39,4 @@ fclean : clean
 
 re : fclean all
 
-.PHONY : fclean clean
+.PHONY : clean

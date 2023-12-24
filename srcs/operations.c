@@ -6,7 +6,7 @@
 /*   By: yzaazaa <yzaazaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 01:05:29 by yzaazaa           #+#    #+#             */
-/*   Updated: 2023/12/22 09:13:30 by yzaazaa          ###   ########.fr       */
+/*   Updated: 2023/12/24 10:36:45 by yzaazaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	pa(t_stack **a, t_stack **b, int print)
 	if (!*b)
 		return ;
 	push(a, pop(b));
+	if (!(*a))
+		ft_puterr("Error", a, b, NULL);
 }
 
 void	pb(t_stack **a, t_stack **b, int print)
@@ -62,4 +64,6 @@ void	pb(t_stack **a, t_stack **b, int print)
 	if (!*a)
 		return ;
 	push(b, pop(a));
+	if (!(*b))
+		ft_puterr("Error", a, b, NULL);
 }
